@@ -36,14 +36,25 @@ int main (int argc, char **argv)
         }
         else
         {
+          if(index > master_array_size)
+          {
+            cout << "ERROR: There are more inputs than indicated. Exiting program." << endl;
+            return 0;
+          }
           master_array[index] = stod(line);
           index++;
         }
       }
     }
-    catch(const out_of_range& oor)
+    catch(const invalid_argument& ia)
     {
-      cout << "There was an invalid entry in your file. The program will now exit. " << endl;
+      cout << "ERROR: There was an invalid entry in your file. The program will now exit. " << endl;
+      return 0;
+    }
+
+    if(index < master_array_size)
+    {
+      cout << "ERROR: There were less inputs than indicated. Exiting program." << endl;
       return 0;
     }
 
@@ -60,7 +71,7 @@ int main (int argc, char **argv)
   }
   else
   {
-    cout << "File was unable to be opened. Exiting program. " << endl;
+    cout << "ERROR: File was unable to be opened. Exiting program. " << endl;
   }
   return 0;
 }
