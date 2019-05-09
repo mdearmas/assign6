@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <ctime>
 
 #include "Sorting.h"
 
@@ -8,6 +9,8 @@ using namespace std;
 int main (int argc, char **argv)
 {
   Sorting sort;
+
+  clock_t starting_time, ending_time;
 
   ifstream input_file;
   double *master_array, *array_copy1, *array_copy2, *array_copy3;
@@ -59,13 +62,12 @@ int main (int argc, char **argv)
     }
 
     array_copy1 = sort.copyArray(master_array, master_array_size);
-    array_copy2 = sort.copyArray(master_array, master_array_size);
-    array_copy3 = sort.copyArray(master_array, master_array_size);
 
-    sort.printArray(master_array, master_array_size);
-    sort.printArray(array_copy1, master_array_size);
-    sort.printArray(array_copy2, master_array_size);
-    sort.printArray(array_copy3, master_array_size);
+    starting_time = clock();
+    cout << "Started BubbleSort at " << starting_time << endl;
+    sort.bubbleSort(array_copy1, master_array_size);
+    ending_time = clock();
+    cout << "Ended BubbleSort at " << ending_time << endl;
 
     input_file.close();
   }
