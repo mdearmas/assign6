@@ -62,12 +62,20 @@ int main (int argc, char **argv)
     }
 
     array_copy1 = sort.copyArray(master_array, master_array_size);
+    array_copy2 = sort.copyArray(master_array, master_array_size);
 
     starting_time = clock();
     cout << "Started BubbleSort at " << starting_time << endl;
     sort.bubbleSort(array_copy1, master_array_size);
     ending_time = clock();
     cout << "Ended BubbleSort at " << ending_time << endl;
+
+    starting_time = clock();
+    cout << "Started InsertionSort at " << starting_time << endl;
+    sort.insertionSort(array_copy2, master_array_size);
+    ending_time = clock();
+    sort.printArray(array_copy2, master_array_size);
+    cout << "Ended InsertionSort at " << ending_time << endl;
 
     input_file.close();
   }
