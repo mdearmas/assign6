@@ -13,7 +13,7 @@ int main (int argc, char **argv)
   clock_t starting_time, ending_time;
 
   ifstream input_file;
-  double *master_array, *array_copy1, *array_copy2, *array_copy3;
+  double *master_array, *array_copy1, *array_copy2, *array_copy3, *array_copy4;
   int index = 0;
   int master_array_size;
 
@@ -64,24 +64,31 @@ int main (int argc, char **argv)
     array_copy1 = sort.copyArray(master_array, master_array_size);
     array_copy2 = sort.copyArray(master_array, master_array_size);
     array_copy3 = sort.copyArray(master_array, master_array_size);
+    array_copy4 = sort.copyArray(master_array, master_array_size);
 
     starting_time = clock();
     cout << "Started BubbleSort at " << starting_time << " // ";
     sort.bubbleSort(array_copy1, master_array_size);
     ending_time = clock();
-    cout << "Ended BubbleSort at " << ending_time << endl;
+    cout << "Ended BubbleSort at " << ending_time << " (Total time: " << ending_time-starting_time << ")" << endl;
 
     starting_time = clock();
     cout << "Started InsertionSort at " << starting_time << " // ";
     sort.insertionSort(array_copy2, master_array_size);
     ending_time = clock();
-    cout << "Ended InsertionSort at " << ending_time << endl;
+    cout << "Ended InsertionSort at " << ending_time << " (Total time: " << ending_time-starting_time << ")" << endl;
 
     starting_time = clock();
     cout << "Started MergeSort at " << starting_time << " // ";
     sort.mergeSort(array_copy3, 0, master_array_size);
     ending_time = clock();
-    cout << "Ended MergeSort at " << ending_time << endl;
+    cout << "Ended MergeSort at " << ending_time << " (Total time: " << ending_time-starting_time << ")" << endl;
+
+    starting_time = clock();
+    cout << "Started QuickSort at " << starting_time << " // ";
+    sort.quickSort(array_copy4, 0, master_array_size);
+    ending_time = clock();
+    cout << "Ended QuickSort at " << ending_time << " (Total time: " << ending_time-starting_time << ")" << endl;
 
     input_file.close();
   }
@@ -89,5 +96,11 @@ int main (int argc, char **argv)
   {
     cout << "ERROR: File was unable to be opened. Exiting program. " << endl;
   }
+
+  delete[] master_array;
+  delete[] array_copy1;
+  delete[] array_copy2;
+  delete[] array_copy3;
+  delete[] array_copy4;
   return 0;
 }

@@ -33,6 +33,41 @@ void Sorting::insertionSort(double a[], int size)
   }
 }
 
+void Sorting::quickSort(double a[], int low, int high)
+{
+  if(low < high)
+  {
+    int pivot = partition(a, low, high);
+
+    quickSort(a, low, pivot-1);
+    quickSort(a, pivot+1, high);
+  }
+}
+
+int Sorting::partition(double a[], int low, int high)
+{
+  int pivot = a[high];
+  int small_index = low - 1;
+  double temp;
+
+  for(int j = low; j <= high-1; ++j)
+  {
+    if(a[j] <= pivot)
+    {
+      small_index++;
+      temp = a[small_index];
+      a[small_index] = a[j];
+      a[j] = temp;
+    }
+  }
+
+  temp = a[small_index+1];
+  a[small_index+1] = a[high];
+  a[high] = temp;
+
+  return (small_index+1);
+}
+
 void Sorting::mergeSort(double a[], int low, int high)
 {
   if(low < high)
